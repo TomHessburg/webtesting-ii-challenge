@@ -33,7 +33,6 @@ class App extends Component {
   }
 
   addBall = () => {
-    console.log('ball');
     if(this.state.balls < 3 ){
       this.setState({
         balls: this.state.balls + 1
@@ -48,7 +47,6 @@ class App extends Component {
   }
 
   addStrike = () => {
-    console.log('strike');
     if(this.state.strikes < 2 ){
       this.setState({
         strikes: this.state.strikes + 1
@@ -63,7 +61,6 @@ class App extends Component {
   }
 
   addFoul = () => {
-    console.log('foul');
     if(this.state.fouls < 2 && this.state.strikes < 2){
       this.setState({
         fouls: this.state.fouls + 1,
