@@ -1,28 +1,87 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import Display from './components/Display.js';
+import Dashboard from './components/Dashboard.js';
+
 class App extends Component {
+  state = {
+    balls: 0,
+    strikes: 0,
+    fouls: 0,
+    hits: 0
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Display 
+        balls={this.state.balls} 
+        strikes={this.state.strikes}
+        fouls={this.state.fouls}
+        hits={this.state.hits}
+        />
+
+        <Dashboard
+        addBall={this.addBall}
+        addStrike={this.addStrike}
+        addFoul={this.addFoul}
+        addHit={this.addHit}
+        />
       </div>
     );
   }
+
+  addBall = () => {
+    console.log('ball');
+    if(this.state.balls < 3 ){
+      this.setState({
+        balls: this.state.balls + 1
+      })
+    }else{
+      this.setState({
+        balls: 0,
+        strikes: 0,
+        fouls: 0
+      })
+    }
+  }
+
+  addStrike = () => {
+    console.log('strike');
+    if(this.state.strikes < 2 ){
+      this.setState({
+        strikes: this.state.strikes + 1
+      })
+    }else{
+      this.setState({
+        balls: 0,
+        strikes: 0,
+        fouls: 0
+      })
+    }
+  }
+
+  addFoul = () => {
+    console.log('foul');
+    if(this.state.fouls < 2 && this.state.strikes < 2){
+      this.setState({
+        fouls: this.state.fouls + 1,
+        strikes: this.state.strikes + 1
+      })
+    }
+  }
+
+  addHit = () => {
+    this.setState({
+      balls: 0,
+      strikes: 0,
+      fouls: 0,
+      hits: this.state.hits + 1
+    })
+  }
+
+
 }
 
 export default App;
